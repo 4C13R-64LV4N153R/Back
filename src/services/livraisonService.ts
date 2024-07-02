@@ -30,3 +30,7 @@ export async function deleteLivraison(livraisonId: number) {
         where: { livraison_id: livraisonId },
     });
 }
+
+export async function getLivraisons() {
+    return await prisma.livraison.findMany();
+}
