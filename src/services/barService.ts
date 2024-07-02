@@ -9,20 +9,20 @@ export async function createBar(barData: { nom: string }) {
 
 export async function getBarById(barId: number) {
     return await prisma.bar.findUnique({
-        where: { bar_id: barId },
+        where: { id: barId },
     });
 }
 
 export async function updateBar(barId: number, barData: { nom?: string }) {
     return await prisma.bar.update({
-        where: { bar_id: barId },
+        where: { id: barId },
         data: barData,
     });
 }
 
 export async function deleteBar(barId: number) {
     return await prisma.bar.delete({
-        where: { bar_id: barId },
+        where: { id: barId },
     });
 }
 
