@@ -25,3 +25,7 @@ export async function deleteBar(barId: number) {
         where: { bar_id: barId },
     });
 }
+
+export async function getBars() {
+    return await prisma.bar.findMany();
+}

@@ -1,10 +1,14 @@
 import { Request, Response } from 'express';
-import { getAllUsers, createUser } from '../services/userService';
+import { getUserById, createUser } from '../services/userService';
 
-export const getAllUsersHandler = async (req: Request, res: Response) => {
+export const getUserByIdHandler = async (req: Request, res: Response) => {
     try {
-        const users = await getAllUsers();
-        res.json(users);
+        const user = await getUserById(Number(req.params.id));
+        if (!user) {
+            res.status(404).json({ error: 'User not found' });
+        } else {
+            res.json(user);
+        }
     } catch (error) {
         if (error instanceof Error) {
             res.status(500).json({ error: error.message });
@@ -12,7 +16,7 @@ export const getAllUsersHandler = async (req: Request, res: Response) => {
             res.status(500).json({ error: 'Unknown error' });
         }
     }
-};
+}
 
 export const createUserHandler = async (req: Request, res: Response) => {
     try {
