@@ -1,9 +1,9 @@
-import { Router } from "express";
-import { getBarByIdHandler, createBarHandler, deleteBarHandler, getBarsHandler, updateBarHandler } from "../controllers/barController";
-import { authenticateToken } from "../middlewares/authMiddleware";
-
-const router = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const barController_1 = require("../controllers/barController");
+const authMiddleware_1 = require("../middlewares/authMiddleware");
+const router = (0, express_1.Router)();
 /**
  * @swagger
  * /bar/{id}:
@@ -23,8 +23,7 @@ const router = Router();
  *      500:
  *          description: Unknown error
  */
-router.get('/:id', authenticateToken, getBarByIdHandler);
-
+router.get('/:id', authMiddleware_1.authenticateToken, barController_1.getBarByIdHandler);
 /**
 * @swagger
 * /bar:
@@ -52,8 +51,7 @@ router.get('/:id', authenticateToken, getBarByIdHandler);
 *      500:
 *          description: Unknown error
 */
-router.post('/', authenticateToken, createBarHandler);
-
+router.post('/', authMiddleware_1.authenticateToken, barController_1.createBarHandler);
 /**
 * @swagger
 * /bar/{id}:
@@ -85,8 +83,7 @@ router.post('/', authenticateToken, createBarHandler);
 *      500:
 *          description: Unknown error
 */
-router.put('/:id', authenticateToken, updateBarHandler);
-
+router.put('/:id', authMiddleware_1.authenticateToken, barController_1.updateBarHandler);
 /**
 * @swagger
 * /bar/{id}:
@@ -104,8 +101,7 @@ router.put('/:id', authenticateToken, updateBarHandler);
 *      500:
 *          description: Unknown error
 */
-router.delete('/:id', authenticateToken, deleteBarHandler);
-
+router.delete('/:id', authMiddleware_1.authenticateToken, barController_1.deleteBarHandler);
 /**
 * @swagger
 * /bar:
@@ -117,6 +113,5 @@ router.delete('/:id', authenticateToken, deleteBarHandler);
 *      500:
 *          description: Unknown error
 */
-router.get('/', authenticateToken, getBarsHandler);
-
-export default router;
+router.get('/', authMiddleware_1.authenticateToken, barController_1.getBarsHandler);
+exports.default = router;

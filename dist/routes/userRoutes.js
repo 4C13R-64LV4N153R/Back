@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import { getUserByIdHandler, createUserHandler } from '../controllers/userController';
-import { authenticateToken } from '../middlewares/authMiddleware';
-
-const router = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const userController_1 = require("../controllers/userController");
+const authMiddleware_1 = require("../middlewares/authMiddleware");
+const router = (0, express_1.Router)();
 /**
  * @swagger
  * /user/{id}:
@@ -23,8 +23,7 @@ const router = Router();
  *      500:
  *          description: Unknown error
  */
-router.get('/:id', authenticateToken, getUserByIdHandler);
-
+router.get('/:id', authMiddleware_1.authenticateToken, userController_1.getUserByIdHandler);
 /**
  * @swagger
  * /user:
@@ -56,6 +55,5 @@ router.get('/:id', authenticateToken, getUserByIdHandler);
  *          description: Unknown error
  
  */
-router.post('/', authenticateToken, createUserHandler);
-
-export default router;
+router.post('/', authMiddleware_1.authenticateToken, userController_1.createUserHandler);
+exports.default = router;

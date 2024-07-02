@@ -1,9 +1,9 @@
-import e, { Router } from "express";
-import { getLivraisonByIdHandler, createLivraisonHandler, getLivraisonsHandler, updateLivraisonHandler } from "../controllers/livraisonController";
-import { authenticateToken } from "../middlewares/authMiddleware";
-
-const router = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const livraisonController_1 = require("../controllers/livraisonController");
+const authMiddleware_1 = require("../middlewares/authMiddleware");
+const router = (0, express_1.Router)();
 /**
  * @swagger
  * /livraison/{id}:
@@ -23,8 +23,7 @@ const router = Router();
  *      500:
  *          description: Unknown error
  */
-router.get('/:id', authenticateToken, getLivraisonByIdHandler);
-
+router.get('/:id', authMiddleware_1.authenticateToken, livraisonController_1.getLivraisonByIdHandler);
 /**
  * @swagger
  * /livraison:
@@ -56,8 +55,7 @@ router.get('/:id', authenticateToken, getLivraisonByIdHandler);
  *          description: Unknown error
  
  */
-router.post('/', authenticateToken, createLivraisonHandler);
-
+router.post('/', authMiddleware_1.authenticateToken, livraisonController_1.createLivraisonHandler);
 /**
  * @swagger
  * /livraison/{id}:
@@ -92,8 +90,7 @@ router.post('/', authenticateToken, createLivraisonHandler);
  *      500:
  *          description: Unknown error
  */
-router.put('/:id', authenticateToken, updateLivraisonHandler);
-
+router.put('/:id', authMiddleware_1.authenticateToken, livraisonController_1.updateLivraisonHandler);
 /**
  * @swagger
  * /livraison:
@@ -105,6 +102,5 @@ router.put('/:id', authenticateToken, updateLivraisonHandler);
  *      500:
  *          description: Unknown error
  */
-router.get('/', authenticateToken, getLivraisonsHandler);
-
-export default router;
+router.get('/', authMiddleware_1.authenticateToken, livraisonController_1.getLivraisonsHandler);
+exports.default = router;

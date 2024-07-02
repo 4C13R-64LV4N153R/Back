@@ -6,7 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
 
 export const registerUser = async (name: string, email: string, password: string) => {
   const hashedPassword = await bcrypt.hash(password, 10);
-  const user = await prisma.user.create({
+  const user = await prisma.utilisateur.create({
     data: {
       name,
       email,
@@ -17,7 +17,7 @@ export const registerUser = async (name: string, email: string, password: string
 };
 
 export const loginUser = async (email: string, password: string) => {
-  const user = await prisma.user.findUnique({ where: { email } });
+  const user = await prisma.utilisateur.findUnique({ where: { email } });
   if (!user) {
     throw new Error('User not found');
   }
