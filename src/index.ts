@@ -6,9 +6,9 @@ import livraisonRoutes from './routes/livraisonRoutes';
 import authRoutes from './routes/authRoutes';
 import adminRoutes from './routes/adminRoutes';
 import { setupSwagger } from './swagger';
+import cors from 'cors';
 
 dotenv.config();
-
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
