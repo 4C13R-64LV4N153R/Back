@@ -195,29 +195,64 @@ async function main() {
         });
 
         // Insertion des bars
-        const barCentral = await prisma.bar.create({
-            data: { nom: 'Bar Central' }
+        const BarVinVIP = await prisma.bar.create({
+            data: { nom: ' Bar à vins VIP' }
         });
-        const barDesAmis = await prisma.bar.create({
-            data: { nom: 'Bar des Amis' }
+        const BarGeneralVIP = await prisma.bar.create({
+            data: { nom: 'Bar général VIP' }
         });
 
+        const BarLoges = await prisma.bar.create({
+            data: { nom: 'Bar loges' }
+        });
+
+        const BarGeneralConcerts = await prisma.bar.create({
+            data: { nom: ' Bar général concerts' }
+        });
+
+        const BarAlcoolsForts1 = await prisma.bar.create({
+            data: { nom: 'Bar alcools forts 1' }
+        });
+
+        const BarAlcoolsForts2 = await prisma.bar.create({
+            data: { nom: 'Bar alcools forts 2' }
+        });
+
+        const BarAlcoolsForts3 = await prisma.bar.create({
+            data: { nom: 'Bar alcools forts 3' }
+        });
+
+        const BarGeneralCamping = await prisma.bar.create({
+            data: { nom: 'Bar général camping' }
+        });
+
+        const BarRicardCamping = await prisma.bar.create({
+            data: { nom: 'Bar Ricard camping' }
+        });
+
+        const StandDejeuners = await prisma.bar.create({
+            data: { nom: 'Stand petits déjeuners' }
+        });
+
+        const Magasin = await prisma.bar.create({
+            data: { nom: 'Magasin' }
+        });
         // Insertion des stocks
         await prisma.stock.createMany({
             data: [
-                { bar_id: barCentral.bar_id, produit_id: Coca_0_500.produit_id, quantite: 40 },
-                { bar_id: barCentral.bar_id, produit_id: JackApple.produit_id, quantite: 10 },
-                { bar_id: barDesAmis.bar_id, produit_id: Tropico_1500.produit_id, quantite: 20 },
-                { bar_id: barDesAmis.bar_id, produit_id: JackHoney.produit_id, quantite: 15 },
+                { bar_id: BarRicardCamping.bar_id, produit_id: Coca_0_500.produit_id, quantite: 40 },
+                { bar_id: BarAlcoolsForts2.bar_id, produit_id: JackApple.produit_id, quantite: 10 },
+                { bar_id: BarGeneralVIP.bar_id, produit_id: Tropico_1500.produit_id, quantite: 20 },
+                { bar_id: BarVinVIP.bar_id, produit_id: JackHoney.produit_id, quantite: 15 },
             ]
         });
 
         // Insertion des livraisons
         const livraison1 = await prisma.livraison.create({
-            data: { utilisateur_id: livreurJane.utilisateur_id, bar_id: barCentral.bar_id, statut: 'prise_en_charge', date_livraison: new Date('2024-07-01') }
+            data: { utilisateur_id: livreurJane.utilisateur_id, bar_id: BarVinVIP.bar_id, statut: 'prise_en_charge', date_livraison: new Date('2024-07-01') }
         });
         const livraison2 = await prisma.livraison.create({
-            data: { utilisateur_id: livreurJane.utilisateur_id, bar_id: barDesAmis.bar_id, statut: 'livree', date_livraison: new Date('2024-07-01') }
+            data: { utilisateur_id: livreurJane.utilisateur_id, bar_id: BarVinVIP.bar_id, statut: 'livree', date_livraison: new Date('2024-07-01') }
         });
 
         // Insertion des produits dans les livraisons
@@ -235,10 +270,10 @@ async function main() {
         // Mise à jour des stocks pour les nouveaux produits
         await prisma.stock.createMany({
             data: [
-                { bar_id: barCentral.bar_id, produit_id: Coca_1500.produit_id, quantite: 30 },
-                { bar_id: barCentral.bar_id, produit_id: LaysClassic.produit_id, quantite: 50 },
-                { bar_id: barDesAmis.bar_id, produit_id: Coca_0_500.produit_id, quantite: 20 },
-                { bar_id: barDesAmis.bar_id, produit_id: LaysSelVinaigre.produit_id, quantite: 40 },
+                { bar_id: BarGeneralCamping.bar_id, produit_id: Coca_1500.produit_id, quantite: 30 },
+                { bar_id: BarGeneralCamping.bar_id, produit_id: LaysClassic.produit_id, quantite: 50 },
+                { bar_id: BarVinVIP.bar_id, produit_id: Coca_0_500.produit_id, quantite: 20 },
+                { bar_id: BarVinVIP.bar_id, produit_id: LaysSelVinaigre.produit_id, quantite: 40 },
             ],
         });
 
