@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-async function main() {
+export async function getFixtures() {
     try {
         // Insertion des partenaires
         const partenaireA = await prisma.partenaire.create({
@@ -34,10 +34,10 @@ async function main() {
 
         // Insertion des utilisateurs
         const barmanJohn = await prisma.utilisateur.create({
-            data: { name: 'John Doe', email: 'barman@lebar.com', password: '123'}
+            data: { name: 'John Doe', email: 'barman@lebar.com', password: '123' }
         });
         const livreurJane = await prisma.utilisateur.create({
-            data: { name: 'Jane Smith', email: 'livreur@lalivraison.fr', password: '123'}
+            data: { name: 'Jane Smith', email: 'livreur@lalivraison.fr', password: '123' }
         });
 
         // Insertion des bars
@@ -103,5 +103,3 @@ async function main() {
         }
     }
 }
-
-main();
