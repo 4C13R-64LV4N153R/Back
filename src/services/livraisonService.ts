@@ -18,7 +18,7 @@ export async function createLivraison(livraisonData: { utilisateur_id: number; b
 }
 
 export async function getLivraisonById(livraisonId: number) {
-    return await prisma.livraison.findUnique({
+    return await prisma.livraison.findFirst({
         where: {
             id: livraisonId,
         },

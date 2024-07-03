@@ -18,35 +18,83 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 function createBar(barData) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.bar.create({
-            data: { nom: barData.nom },
+        var _a;
+        const bar = yield prisma.bar.create({
+            data: {
+                nom: barData.nom,
+                stocks: {
+                    create: (_a = barData.stocks) === null || _a === void 0 ? void 0 : _a.map(stock => ({
+                        produit_id: stock.produit_id,
+                        quantite: stock.quantite,
+                    })),
+                },
+            },
+            include: {
+                stocks: true,
+                livraisons: true,
+            },
         });
+        return bar;
     });
 }
 function getBarById(barId) {
     return __awaiter(this, void 0, void 0, function* () {
         return yield prisma.bar.findUnique({
             where: { id: barId },
+            include: {
+                stocks: true,
+            },
         });
     });
 }
 function updateBar(barId, barData) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.bar.update({
+        var _a;
+        const updates = (_a = barData.stocks) === null || _a === void 0 ? void 0 : _a.map(stock => prisma.stock.upsert({
+            where: {
+                bar_id_produit_id: {
+                    bar_id: barId,
+                    produit_id: stock.produit_id,
+                },
+            },
+            update: {
+                quantite: stock.quantite,
+            },
+            create: {
+                bar_id: barId,
+                produit_id: stock.produit_id,
+                quantite: stock.quantite,
+            },
+        }));
+        yield prisma.$transaction(updates || []);
+        const bar = yield prisma.bar.update({
             where: { id: barId },
-            data: barData,
+            data: {
+                nom: barData.nom,
+            },
+            include: {
+                stocks: true,
+            },
         });
+        return bar;
     });
 }
 function deleteBar(barId) {
     return __awaiter(this, void 0, void 0, function* () {
         return yield prisma.bar.delete({
             where: { id: barId },
+            include: {
+                stocks: true,
+            },
         });
     });
 }
 function getBars() {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.bar.findMany();
+        return yield prisma.bar.findMany({
+            include: {
+                stocks: true,
+            },
+        });
     });
 }

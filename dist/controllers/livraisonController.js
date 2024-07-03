@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLivraisonsHandler = exports.updateLivraisonHandler = exports.createLivraisonHandler = exports.getLivraisonByIdHandler = void 0;
+exports.getPendingLivraisonsHandler = exports.getLivraisonsHandler = exports.updateLivraisonHandler = exports.createLivraisonHandler = exports.getLivraisonByIdHandler = void 0;
 const livraisonService_1 = require("../services/livraisonService");
 const getLivraisonByIdHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -76,3 +76,24 @@ const getLivraisonsHandler = (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.getLivraisonsHandler = getLivraisonsHandler;
+const getPendingLivraisonsHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        console.log('getPendingLivraisonsHandler                                                        AAAAAAAAAAAAAAAAAAAAAAA');
+        const livraisons = yield (0, livraisonService_1.getLivraisons)();
+        console.log(livraisons);
+        //const pendingLivraisons = livraisons.filter(livraison => livraison.statut === LivraisonStatut.en_attente_de_reponse);
+        //console.log(pendingLivraisons);
+        //res.json(pendingLivraisons);
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            console.log('getPendingLivraisonsHandler                                                        AAAAAAAAAAAAAAAAAAAAAAA');
+            res.status(500).json({ error: error.message });
+        }
+        else {
+            console.log('getPendingLivraisonsHandler                                                        AAAAAAAAAAAAAAAAAAAAAAA');
+            res.status(500).json({ error: 'Unknown error' });
+        }
+    }
+});
+exports.getPendingLivraisonsHandler = getPendingLivraisonsHandler;

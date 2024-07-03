@@ -25,13 +25,25 @@ function createLivraison(livraisonData) {
                 statut: livraisonData.statut,
                 date_livraison: livraisonData.date_livraison
             },
+            include: {
+                utilisateur: true,
+                bar: true,
+                produits: true,
+            },
         });
     });
 }
 function getLivraisonById(livraisonId) {
     return __awaiter(this, void 0, void 0, function* () {
         return yield prisma.livraison.findUnique({
-            where: { id: livraisonId },
+            where: {
+                id: livraisonId,
+            },
+            include: {
+                utilisateur: true,
+                bar: true,
+                produits: true,
+            },
         });
     });
 }
@@ -40,6 +52,11 @@ function updateLivraison(livraisonId, livraisonData) {
         return yield prisma.livraison.update({
             where: { id: livraisonId },
             data: livraisonData,
+            include: {
+                utilisateur: true,
+                bar: true,
+                produits: true,
+            },
         });
     });
 }
@@ -47,11 +64,22 @@ function deleteLivraison(livraisonId) {
     return __awaiter(this, void 0, void 0, function* () {
         return yield prisma.livraison.delete({
             where: { id: livraisonId },
+            include: {
+                utilisateur: true,
+                bar: true,
+                produits: true,
+            },
         });
     });
 }
 function getLivraisons() {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.livraison.findMany();
+        return yield prisma.livraison.findMany({
+            include: {
+                utilisateur: true,
+                bar: true,
+                produits: true,
+            },
+        });
     });
 }

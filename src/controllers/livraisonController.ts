@@ -60,18 +60,19 @@ export const getLivraisonsHandler = async (req: Request, res: Response) => {
 
 export const getPendingLivraisonsHandler = async (req: Request, res: Response) => {
     try {
-        console.log('getPendingLivraisonsHandler                                                        AAAAAAAAAAAAAAAAAAAAAAA');
+        console.log('Handler reached');
         const livraisons = await getLivraisons();
-        console.log(livraisons);
+        console.log('Livraisons:', livraisons);
         const pendingLivraisons = livraisons.filter(livraison => livraison.statut === LivraisonStatut.en_attente_de_reponse);
-        console.log(pendingLivraisons);
+        console.log('Pending Livraisons:', pendingLivraisons);
         res.json(pendingLivraisons);
     } catch (error) {
+        console.error('Error:', error); // Enhanced logging
         if (error instanceof Error) {
             res.status(500).json({ error: error.message });
         } else {
             res.status(500).json({ error: 'Unknown error' });
         }
     }
-}
+};
 

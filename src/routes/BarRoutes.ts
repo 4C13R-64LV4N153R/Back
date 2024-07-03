@@ -109,16 +109,17 @@ router.put('/:id', authenticateToken, updateBarHandler);
  */
 router.delete('/:id', authenticateToken, deleteBarHandler);
 
+
 /**
  * @swagger
- * /bars:
+ * /livraisons/pending:
  *   get:
- *     summary: Get all bars
+ *     summary: Get all pending livraisons
  *     tags:
- *      - bar
+ *      - livraison
  *     responses:
  *       200:
- *         description: Bars found
+ *         description: Pending livraisons found
  *       500:
  *         description: Unknown error
  */
