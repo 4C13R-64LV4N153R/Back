@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getLivraisonById, createLivraison, updateLivraison, getLivraisons } from '../services/livraisonService';
+import { LivraisonStatut } from '@prisma/client';
 
 export const getLivraisonByIdHandler = async (req: Request, res: Response) => {
     try {
@@ -48,6 +49,20 @@ export const getLivraisonsHandler = async (req: Request, res: Response) => {
     try {
         const livraisons = await getLivraisons();
         res.json(livraisons);
+    } catch (error) {
+        if (error instanceof Error) {
+            res.status(500).json({ error: error.message });
+        } else {
+            res.status(500).json({ error: 'Unknown error' });
+        }
+    }
+}
+
+export const getPendingLivraisonsHandler = async (req: Request, res: Response) => {
+    try {
+        const livraisons = await getLivraisons();
+        const pendingLivraisons = livraisons.filter(livraison => livraison.statut === LivraisonStatut.en_attente_de_reponse);
+        res.json(pendingLivraisons);
     } catch (error) {
         if (error instanceof Error) {
             res.status(500).json({ error: error.message });

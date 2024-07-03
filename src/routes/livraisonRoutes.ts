@@ -1,5 +1,11 @@
 import { Router } from 'express';
-import { getLivraisonByIdHandler, createLivraisonHandler, getLivraisonsHandler, updateLivraisonHandler } from '../controllers/livraisonController';
+import {
+    getLivraisonByIdHandler,
+    createLivraisonHandler,
+    getLivraisonsHandler,
+    updateLivraisonHandler,
+    getPendingLivraisonsHandler
+} from '../controllers/livraisonController';
 import { authenticateToken } from '../middlewares/authMiddleware';
 
 const router = Router();
@@ -113,5 +119,21 @@ router.put('/:id', authenticateToken, updateLivraisonHandler);
  *         description: Unknown error
  */
 router.get('/', authenticateToken, getLivraisonsHandler);
+
+/**
+ * @swagger
+ * /livraisons/pending:
+ *   get:
+ *     summary: Get all pending livraisons
+ *     tags:
+ *      - livraison
+ *     responses:
+ *       200:
+ *         description: Pending livraisons found
+ *       500:
+ *         description: Unknown error
+ 
+ */
+router.get('/pending', authenticateToken, getPendingLivraisonsHandler);
 
 export default router;
