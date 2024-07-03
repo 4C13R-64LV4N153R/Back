@@ -282,8 +282,7 @@ async function main() {
             data: { livraison_id: livraison1.livraison_id, produit_id: Coca_1500.produit_id, quantite: 10 }
         });
 
-
-
+        
     } catch (err) {
         console.log(err);
     } finally {
