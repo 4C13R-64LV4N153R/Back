@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { getFixturesHandler } from '../controllers/adminController';
 
 const router = Router();
+
 /**
  * @swagger
  * /admin/fixtures:
