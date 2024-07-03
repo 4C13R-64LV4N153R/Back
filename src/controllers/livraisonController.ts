@@ -60,8 +60,11 @@ export const getLivraisonsHandler = async (req: Request, res: Response) => {
 
 export const getPendingLivraisonsHandler = async (req: Request, res: Response) => {
     try {
+        console.log('getPendingLivraisonsHandler                                                        AAAAAAAAAAAAAAAAAAAAAAA');
         const livraisons = await getLivraisons();
+        console.log(livraisons);
         const pendingLivraisons = livraisons.filter(livraison => livraison.statut === LivraisonStatut.en_attente_de_reponse);
+        console.log(pendingLivraisons);
         res.json(pendingLivraisons);
     } catch (error) {
         if (error instanceof Error) {

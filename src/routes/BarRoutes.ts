@@ -80,11 +80,6 @@ router.post('/', authenticateToken, createBarHandler);
  *             properties:
  *               name:
  *                 type: string
- *               address:
- *                 type: string
- *             required:
- *               - name
- *               - address
  *     responses:
  *       200:
  *         description: Bar updated

@@ -51,9 +51,10 @@ model Bar {
 }
 
 model Stock {
-  bar_id     Int
-  produit_id Int
-  quantite   Int @default(0)
+  bar_id       Int
+  produit_id   Int
+  quantite     Int @default(0)
+  quantite_max Int @default(100)
 
   bar     Bar     @relation(fields: [bar_id], references: [id])
   produit Produit @relation(fields: [produit_id], references: [id])

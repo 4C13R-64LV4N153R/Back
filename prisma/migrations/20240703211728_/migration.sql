@@ -42,6 +42,7 @@ CREATE TABLE `Stock` (
     `bar_id` INTEGER NOT NULL,
     `produit_id` INTEGER NOT NULL,
     `quantite` INTEGER NOT NULL DEFAULT 0,
+    `quantite_max` INTEGER NOT NULL DEFAULT 100,
 
     PRIMARY KEY (`bar_id`, `produit_id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

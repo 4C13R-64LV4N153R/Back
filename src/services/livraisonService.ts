@@ -3,18 +3,30 @@ const prisma = new PrismaClient();
 
 export async function createLivraison(livraisonData: { utilisateur_id: number; bar_id: number; statut: 'prise_en_charge' | 'livree' | 'refusee' | 'en_attente_de_reponse'; date_livraison: Date }) {
     return await prisma.livraison.create({
-        data: { 
-            utilisateur_id: livraisonData.utilisateur_id, 
-            bar_id: livraisonData.bar_id, 
-            statut: livraisonData.statut, 
-            date_livraison: livraisonData.date_livraison 
+        data: {
+            utilisateur_id: livraisonData.utilisateur_id,
+            bar_id: livraisonData.bar_id,
+            statut: livraisonData.statut,
+            date_livraison: livraisonData.date_livraison
+        },
+        include: {
+            utilisateur: true,
+            bar: true,
+            produits: true,
         },
     });
 }
 
 export async function getLivraisonById(livraisonId: number) {
     return await prisma.livraison.findUnique({
-        where: { id: livraisonId },
+        where: {
+            id: livraisonId,
+        },
+        include: {
+            utilisateur: true,
+            bar: true,
+            produits: true,
+        },
     });
 }
 
@@ -22,15 +34,31 @@ export async function updateLivraison(livraisonId: number, livraisonData: { util
     return await prisma.livraison.update({
         where: { id: livraisonId },
         data: livraisonData,
+        include: {
+            utilisateur: true,
+            bar: true,
+            produits: true,
+        },
     });
 }
 
 export async function deleteLivraison(livraisonId: number) {
     return await prisma.livraison.delete({
         where: { id: livraisonId },
+        include: {
+            utilisateur: true,
+            bar: true,
+            produits: true,
+        },
     });
 }
 
 export async function getLivraisons() {
-    return await prisma.livraison.findMany();
+    return await prisma.livraison.findMany({
+        include: {
+            utilisateur: true,
+            bar: true,
+            produits: true,
+        },
+    });
 }
