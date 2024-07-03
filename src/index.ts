@@ -4,6 +4,7 @@ import userRoutes from './routes/userRoutes';
 import barRoutes from './routes/barRoutes';
 import livraisonRoutes from './routes/livraisonRoutes';
 import authRoutes from './routes/authRoutes';
+import adminRoutes from './routes/adminRoutes';
 import { setupSwagger } from './swagger';
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 app.use('/bars', barRoutes);
 app.use('/livraisons', livraisonRoutes);
+app.use('/admin', adminRoutes);
 
 setupSwagger(app);
 

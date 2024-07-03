@@ -16,6 +16,20 @@ const options = {
                 description: 'Development server',
             },
         ],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT',
+                },
+            },
+        },
+        security: [
+            {
+                bearerAuth: [],
+            },
+        ],
     },
     apis: ['./src/routes/*.ts'], // Fichiers où Swagger doit chercher les commentaires JSDoc
 };
