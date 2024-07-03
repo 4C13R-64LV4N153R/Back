@@ -1,14 +1,96 @@
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String @unique
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Partenaire {
+  id  Int    @id @default(autoincrement())
+  nom String
+
+  produits Produit[]
+}
+
+model Produit {
+  id            Int    @id @default(autoincrement())
+  nom           String
+  contenance    Int
+  unite         String
+  partenaire_id Int
+  img_url       String
+
+  stocks            Stock[]
+  partenaire        Partenaire         @relation(fields: [partenaire_id], references: [id])
+  livraisonProduits LivraisonProduit[]
+}
+
+model Utilisateur {
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
+
+  livraisons Livraison[]
+}
+
+model Bar {
+  id  Int    @id @default(autoincrement())
+  nom String
+
+  stocks     Stock[]
+  livraisons Livraison[]
+}
+
+model Stock {
+  bar_id     Int
+  produit_id Int
+  quantite   Int @default(0)
+
+  bar     Bar     @relation(fields: [bar_id], references: [id])
+  produit Produit @relation(fields: [produit_id], references: [id])
+
+  @@id([bar_id, produit_id])
+}
+
+model Livraison {
+  id             Int             @id @default(autoincrement())
+  utilisateur_id Int
+  bar_id         Int
+  statut         LivraisonStatut @default(en_attente_de_reponse)
+  date_livraison DateTime
+
+  utilisateur Utilisateur        @relation(fields: [utilisateur_id], references: [id])
+  bar         Bar                @relation(fields: [bar_id], references: [id])
+  produits    LivraisonProduit[]
+}
+
+model LivraisonProduit {
+  livraison_produit_id Int @id @default(autoincrement())
+  livraison_id         Int
+  produit_id           Int
+  quantite             Int
+
+  livraison Livraison @relation(fields: [livraison_id], references: [id])
+  produit   Produit   @relation(fields: [produit_id], references: [id])
+}
+
+enum UtilisateurType {
+  barman
+  livreur
+}
+
+enum LivraisonStatut {
+  prise_en_charge
+  livree
+  refusee
+  en_attente_de_reponse
 }
