@@ -25,7 +25,7 @@ const router = Router();
  *       500:
  *         description: Unknown error
  */
-router.get('/:id', getBarByIdHandler);
+router.get('/:id', authenticateToken, getBarByIdHandler);
 
 /**
  * @swagger
