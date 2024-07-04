@@ -272,30 +272,30 @@ export async function getFixtures() {
             data: [
                 { bar_id: BarAlcoolsForts1.id, produit_id: Jack7.id, quantite: 8 },
                 { bar_id: BarAlcoolsForts1.id, produit_id: RhumClan.id, quantite: 10 },
-                { bar_id: BarAlcoolsForts1.id, produit_id: ClanCampbell.id, quantite: 2 },
-                { bar_id: BarAlcoolsForts1.id, produit_id: Ricard.id, quantite: 3 },
+                { bar_id: BarAlcoolsForts1.id, produit_id: ClanCampbell.id, quantite: 5 },
+                { bar_id: BarAlcoolsForts1.id, produit_id: Ricard.id, quantite: 6 },
                 { bar_id: BarAlcoolsForts1.id, produit_id: JackHoney.id, quantite: 16 },
                 { bar_id: BarAlcoolsForts1.id, produit_id: JackFire.id, quantite: 18 },
                 { bar_id: BarAlcoolsForts1.id, produit_id: JackApple.id, quantite: 20 },
                 { bar_id: BarAlcoolsForts2.id, produit_id: Jack7.id, quantite: 4 },
-                { bar_id: BarAlcoolsForts2.id, produit_id: RhumClan.id, quantite: 1 },
+                { bar_id: BarAlcoolsForts2.id, produit_id: RhumClan.id, quantite: 10 },
                 { bar_id: BarAlcoolsForts2.id, produit_id: ClanCampbell.id, quantite: 10 },
                 { bar_id: BarAlcoolsForts2.id, produit_id: Ricard.id, quantite: 12 },
                 { bar_id: BarAlcoolsForts2.id, produit_id: JackHoney.id, quantite: 14 },
                 { bar_id: BarAlcoolsForts2.id, produit_id: JackFire.id, quantite: 16 },
                 { bar_id: BarAlcoolsForts2.id, produit_id: JackApple.id, quantite: 18 },
-                { bar_id: BarAlcoolsForts3.id, produit_id: Jack7.id, quantite: 4 },
-                { bar_id: BarAlcoolsForts3.id, produit_id: RhumClan.id, quantite: 6 },
+                { bar_id: BarAlcoolsForts3.id, produit_id: Jack7.id, quantite: 40 },
+                { bar_id: BarAlcoolsForts3.id, produit_id: RhumClan.id, quantite: 20 },
                 { bar_id: BarAlcoolsForts3.id, produit_id: ClanCampbell.id, quantite: 8 },
                 { bar_id: BarAlcoolsForts3.id, produit_id: Ricard.id, quantite: 10 },
                 { bar_id: BarAlcoolsForts3.id, produit_id: JackHoney.id, quantite: 12 },
                 { bar_id: BarGeneralVIP.id, produit_id: Tropico_1500.id, quantite: 20 },
                 { bar_id: BarGeneralVIP.id, produit_id: JackFire.id, quantite: 7 },
-                { bar_id: BarGeneralVIP.id, produit_id: RhumClan.id, quantite: 1 },
+                { bar_id: BarGeneralVIP.id, produit_id: RhumClan.id, quantite: 10 },
                 { bar_id: BarGeneralVIP.id, produit_id: Cristalline.id, quantite: 30 },
                 { bar_id: BarLoges.id, produit_id: ClanCampbell.id, quantite: 18 },
                 { bar_id: BarLoges.id, produit_id: Perrier.id, quantite: 32 },
-                { bar_id: BarLoges.id, produit_id: FrenchTonic.id, quantite: 3 },
+                { bar_id: BarLoges.id, produit_id: FrenchTonic.id, quantite: 13 },
                 { bar_id: BarLoges.id, produit_id: FrenchGingerBeer.id, quantite: 10 },
                 { bar_id: BarGeneralConcerts.id, produit_id: Jack7.id, quantite: 10},
                 { bar_id: BarGeneralConcerts.id, produit_id: Ricard.id, quantite: 20 },
@@ -304,38 +304,37 @@ export async function getFixtures() {
                 { bar_id: BarGeneralConcerts.id, produit_id: JackApple.id, quantite: 16 },
                 { bar_id: BarGeneralConcerts.id, produit_id: JackFire.id, quantite: 18 },
                 { bar_id: BarGeneralConcerts.id, produit_id: RhumClan.id, quantite: 20 },
-                { bar_id: StandDejeuners.id, produit_id: FrenchGingerBeer.id, quantite: 2 },
+                { bar_id: StandDejeuners.id, produit_id: FrenchGingerBeer.id, quantite: 30 },
                 { bar_id: StandDejeuners.id, produit_id: CaraibosColada.id, quantite: 22 },
                 { bar_id: StandDejeuners.id, produit_id: Urthel.id, quantite: 36 },
                 { bar_id: StandDejeuners.id, produit_id: BavariaPremium.id, quantite: 12 },
                 { bar_id: StandDejeuners.id, produit_id: Bavaria_0.id, quantite: 50 },
-                { bar_id: Magasin.id, produit_id: LaysClassic.id, quantite: 40 },
-                { bar_id: Magasin.id, produit_id: LaysBBQ.id, quantite: 3 },
                 { bar_id: BarVinVIP.id, produit_id: JackHoney.id, quantite: 15 },
-                { bar_id: BarVinVIP.id, produit_id: Coca_0_1500.id, quantite: 6 },
+                { bar_id: BarVinVIP.id, produit_id: JackFire.id, quantite: 1 },
+                { bar_id: BarVinVIP.id, produit_id: Coca_0_1500.id, quantite: 2 },
                 { bar_id: BarVinVIP.id, produit_id: Bavaria_0.id, quantite: 3 },
                 { bar_id: BarVinVIP.id, produit_id: FrenchGingerBeer.id, quantite: 26 },
                 { bar_id: BarRicardCamping.id, produit_id: Coca_0_500.id, quantite: 40 },
                 { bar_id: BarRicardCamping.id, produit_id: Fuzetea_1500.id, quantite: 14 },
                 { bar_id: BarRicardCamping.id, produit_id: MinuteMaid.id, quantite: 20 },
-                { bar_id: BarRicardCamping.id, produit_id: BavariaPremium.id, quantite: 3 },
+                { bar_id: BarRicardCamping.id, produit_id: BavariaPremium.id, quantite: 7 },
                 { bar_id: BarGeneralCamping.id, produit_id: Sprite_500.id, quantite: 20 },
                 { bar_id: BarGeneralCamping.id, produit_id: LaysClassic.id, quantite: 30 },
                 { bar_id: BarGeneralCamping.id, produit_id: Tropico_500.id, quantite: 40 },
-                { bar_id: BarGeneralCamping.id, produit_id: Sprite_1500.id, quantite: 1 },
+                { bar_id: BarGeneralCamping.id, produit_id: Sprite_1500.id, quantite: 15 },
                 { bar_id: BarGeneralCamping.id, produit_id: Fuzetea_500.id, quantite: 12 },
                 { bar_id: BarGeneralCamping.id, produit_id: FrenchTonic.id, quantite: 28 },
                 { bar_id: BarGeneralCamping.id, produit_id: Bavaria_0.id, quantite: 40 },
-                { bar_id: BarGeneralCamping.id, produit_id: MinuteMaid.id, quantite: 2 },
+                { bar_id: BarGeneralCamping.id, produit_id: MinuteMaid.id, quantite: 36 },
             ]
         });
 
         // Insertion des livraisons
         const livraison1 = await prisma.livraison.create({
-            data: { utilisateur_id: livreurJane.id, bar_id: BarVinVIP.id, statut: 'prise_en_charge', date_livraison: new Date('2024-07-01') }
+            data: { utilisateur_id: livreurJane.id, bar_id: BarVinVIP.id, statut: 'prise_en_charge', date_livraison: new Date('2024-07-04') }
         });
         const livraison2 = await prisma.livraison.create({
-            data: { utilisateur_id: livreurJane.id, bar_id: BarVinVIP.id, statut: 'livree', date_livraison: new Date('2024-07-01') }
+            data: { utilisateur_id: livreurJane.id, bar_id: BarVinVIP.id, statut: 'en_attente_de_reponse', date_livraison: new Date('2024-07-04') }
         });
 
         // Insertion des produits dans les livraisons
@@ -343,26 +342,10 @@ export async function getFixtures() {
             data: [
                 { livraison_id: livraison1.id, produit_id: BavariaPremium.id, quantite: 50 },
                 { livraison_id: livraison1.id, produit_id: Coca_0_1500.id, quantite: 30 },
-                { livraison_id: livraison2.id, produit_id: LaysSelVinaigre.id, quantite: 20 },
-                { livraison_id: livraison2.id, produit_id: LaysBBQ.id, quantite: 15 },
+                { livraison_id: livraison2.id, produit_id: JackFire.id, quantite: 32 },
+                { livraison_id: livraison2.id, produit_id: Coca_0_1500.id, quantite: 53 },
+                { livraison_id: livraison2.id, produit_id: Bavaria_0.id, quantite: 21 },
             ],
-        });
-
-
-
-        // Mise à jour des stocks pour les nouveaux produits
-        await prisma.stock.createMany({
-            data: [
-                { bar_id: BarGeneralCamping.id, produit_id: Coca_1500.id, quantite: 30 },
-                { bar_id: BarGeneralCamping.id, produit_id: LaysClassic.id, quantite: 50 },
-                { bar_id: BarVinVIP.id, produit_id: Coca_0_500.id, quantite: 20 },
-                { bar_id: BarVinVIP.id, produit_id: LaysSelVinaigre.id, quantite: 40 },
-            ],
-        });
-
-        // Insérer 10 unités de Coca-Cola 1L5 dans la livraison ID 1
-        await prisma.livraisonProduit.create({
-            data: { livraison_id: livraison1.id, produit_id: Coca_1500.id, quantite: 10 }
         });
 
 
