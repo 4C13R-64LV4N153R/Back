@@ -33,7 +33,7 @@ router.get('/:id', authenticateToken, getBarByIdHandler);
  *   post:
  *     summary: Create a new bar
  *     tags:
- *      - bar
+ *       - bar
  *     requestBody:
  *       required: true
  *       content:
@@ -41,20 +41,51 @@ router.get('/:id', authenticateToken, getBarByIdHandler);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               nom:
  *                 type: string
- *               address:
- *                 type: string
- *             required:
- *               - name
- *               - address
+ *                 example: Bar à vins VIP
+ *               stocks:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     produit_id:
+ *                       type: integer
+ *                       example: 1
+ *                     quantite:
+ *                       type: integer
+ *                       example: 4
  *     responses:
- *       201:
- *         description: Bar created
- *       400:
- *         description: Bad request
+ *       200:
+ *         description: Bar created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   example: 1
+ *                 nom:
+ *                   type: string
+ *                   example: Bar à vins VIP
+ *                 stocks:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       produit_id:
+ *                         type: integer
+ *                         example: 1
+ *                       quantite:
+ *                         type: integer
+ *                         example: 4
+ *                 livraisons:
+ *                   type: array
+ *                   items:
+ *                     type: object
  *       500:
- *         description: Unknown error
+ *         description: Internal server error
  */
 router.post('/', authenticateToken, createBarHandler);
 
@@ -64,13 +95,14 @@ router.post('/', authenticateToken, createBarHandler);
  *   put:
  *     summary: Update a bar
  *     tags:
- *      - bar
+ *       - bar
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: integer
+ *           example: 1
  *     requestBody:
  *       required: true
  *       content:
@@ -78,13 +110,51 @@ router.post('/', authenticateToken, createBarHandler);
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               nom:
  *                 type: string
+ *                 example: Bar à vins VIP
+ *               stocks:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     produit_id:
+ *                       type: integer
+ *                       example: 1
+ *                     quantite:
+ *                       type: integer
+ *                       example: 4
  *     responses:
  *       200:
- *         description: Bar updated
+ *         description: Bar updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   example: 1
+ *                 nom:
+ *                   type: string
+ *                   example: Bar à vins VIP
+ *                 stocks:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       produit_id:
+ *                         type: integer
+ *                         example: 1
+ *                       quantite:
+ *                         type: integer
+ *                         example: 4
+ *                 livraisons:
+ *                   type: array
+ *                   items:
+ *                     type: object
  *       500:
- *         description: Unknown error
+ *         description: Internal server error
  */
 router.put('/:id', authenticateToken, updateBarHandler);
 
@@ -112,14 +182,16 @@ router.delete('/:id', authenticateToken, deleteBarHandler);
 
 /**
  * @swagger
- * /livraisons/pending:
+ * /bars:
  *   get:
- *     summary: Get all pending livraisons
+ *     summary: Get all bars
  *     tags:
- *      - livraison
+ *      - bar
  *     responses:
  *       200:
- *         description: Pending livraisons found
+ *         description: Bars found
+ *       404:
+ *         description: Bars not found
  *       500:
  *         description: Unknown error
  */

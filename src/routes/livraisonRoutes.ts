@@ -12,6 +12,21 @@ const router = Router();
 
 /**
  * @swagger
+ * /livraisons/pending:
+ *   get:
+ *     summary: Get all pending livraisons
+ *     tags:
+ *      - livraison
+ *     responses:
+ *       200:
+ *         description: Pending livraisons found
+ *       500:
+ *         description: Unknown error
+ */
+router.get('/pending', authenticateToken, getPendingLivraisonsHandler);
+
+/**
+ * @swagger
  * /livraisons/{id}:
  *   get:
  *     summary: Get a livraison by id
@@ -119,21 +134,5 @@ router.put('/:id', authenticateToken, updateLivraisonHandler);
  *         description: Unknown error
  */
 router.get('/', authenticateToken, getLivraisonsHandler);
-
-/**
- * @swagger
- * /livraisons/pending:
- *   get:
- *     summary: Get all pending livraisons
- *     tags:
- *      - livraison
- *     responses:
- *       200:
- *         description: Pending livraisons found
- *       500:
- *         description: Unknown error
- 
- */
-router.get('/pending', authenticateToken, getPendingLivraisonsHandler);
 
 export default router;

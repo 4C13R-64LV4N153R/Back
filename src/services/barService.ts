@@ -25,7 +25,11 @@ export async function getBarById(barId: number) {
     return await prisma.bar.findUnique({
         where: { id: barId },
         include: {
-            stocks: true,
+            stocks: {
+                include: {
+                    produit: true,
+                },
+            },
         },
     });
 }
