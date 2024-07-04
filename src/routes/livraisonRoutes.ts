@@ -96,25 +96,49 @@ router.post('/', authenticateToken, createLivraisonHandler);
  *         schema:
  *           type: integer
  *     requestBody:
- *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
  *             properties:
- *               idCommande:
+ *               utilisateur_id:
  *                 type: integer
- *               idLivreur:
+ *               bar_id:
  *                 type: integer
- *               dateLivraison:
+ *               statut:
  *                 type: string
- *             required:
- *               - idCommande
- *               - idLivreur
- *               - dateLivraison
+ *                 enum: [prise_en_charge, livree, refusee, en_attente_de_reponse]
+ *               date_livraison:
+ *                 type: string
+ *                 format: date-time
+ *             example:
+ *               utilisateur_id: 2
+ *               statut: livree
+ *               date_livraison: "2024-07-04T00:00:00.000Z"
  *     responses:
  *       200:
  *         description: Livraison updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   example: 1
+ *                 utilisateur_id:
+ *                   type: integer
+ *                   example: 2
+ *                 bar_id:
+ *                   type: integer
+ *                   example: 1
+ *                 statut:
+ *                   type: string
+ *                   example: livree
+ *                 date_livraison:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2024-07-04T00:00:00.000Z"
  *       500:
  *         description: Unknown error
  */

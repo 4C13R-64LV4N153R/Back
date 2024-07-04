@@ -34,6 +34,7 @@ export const createLivraisonHandler = async (req: Request, res: Response) => {
 
 export const updateLivraisonHandler = async (req: Request, res: Response) => {
     try {
+        console.log('req.body:', req.body);
         const livraison = await updateLivraison(Number(req.params.id), req.body);
         res.json(livraison);
     } catch (error) {
@@ -60,11 +61,8 @@ export const getLivraisonsHandler = async (req: Request, res: Response) => {
 
 export const getPendingLivraisonsHandler = async (req: Request, res: Response) => {
     try {
-        console.log('Handler reached');
         const livraisons = await getLivraisons();
-        console.log('Livraisons:', livraisons);
-        const pendingLivraisons = livraisons.filter(livraison => livraison.statut === LivraisonStatut.en_attente_de_reponse);
-        console.log('Pending Livraisons:', pendingLivraisons);
+        const pendingLivraisons = livraisons.filter((livraison: { statut: any; }) => livraison.statut === LivraisonStatut.en_attente_de_reponse);
         res.json(pendingLivraisons);
     } catch (error) {
         console.error('Error:', error); // Enhanced logging
