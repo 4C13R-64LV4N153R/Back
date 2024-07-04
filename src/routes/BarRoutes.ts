@@ -1,8 +1,31 @@
 import { Router } from 'express';
-import { getBarByIdHandler, createBarHandler, deleteBarHandler, getBarsHandler, updateBarHandler } from '../controllers/barController';
+import { getBarByIdHandler, createBarHandler, deleteBarHandler, getBarsHandler, updateBarHandler, getBarProposalHandler } from '../controllers/barController';
 import { authenticateToken } from '../middlewares/authMiddleware';
+import { get } from 'http';
 
 const router = Router();
+/**
+ * @swagger
+ * /bars/{id}/proposal:
+ *   get:
+ *     summary: Get a bar by id with proposal
+ *     tags:
+ *       - bar
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Bar found
+ *       404:
+ *         description: Bar not found
+ *       500:
+ *         description: Unknown error
+ */
+router.get('/:id/proposal', authenticateToken, getBarProposalHandler);
 
 /**
  * @swagger
@@ -196,5 +219,7 @@ router.delete('/:id', authenticateToken, deleteBarHandler);
  *         description: Unknown error
  */
 router.get('/', authenticateToken, getBarsHandler);
+
+
 
 export default router;

@@ -85,3 +85,16 @@ export async function getBars() {
         },
     });
 }
+
+export async function getMagasin() {
+    return await prisma.bar.findFirst({
+        where: { nom: "Magasin" },
+        include: {
+            stocks: {
+                include: {
+                    produit: true,
+                },
+            },
+        },
+    });
+}
