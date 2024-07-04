@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getBarByIdHandler, createBarHandler, deleteBarHandler, getBarsHandler, updateBarHandler, getBarProposalHandler } from '../controllers/barController';
+import { getBarByIdHandler, createBarHandler, deleteBarHandler, getBarsHandler, updateBarHandler, getBarProposalHandler, getPendingLivraisonByBarHandler } from '../controllers/barController';
 import { authenticateToken } from '../middlewares/authMiddleware';
 import { get } from 'http';
 
@@ -220,6 +220,27 @@ router.delete('/:id', authenticateToken, deleteBarHandler);
  */
 router.get('/', authenticateToken, getBarsHandler);
 
-
+/**
+ * @swagger
+ * /bars/{id}/livraisons/pending:
+ *   get:
+ *     summary: Get all pending livraisons for a bar
+ *     tags:
+ *       - bar
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Pending livraisons found
+ *       404:
+ *         description: Bar not found
+ *       500:
+ *         description: Unknown error
+ */
+router.get('/:id/livraisons/pending', authenticateToken, getPendingLivraisonByBarHandler);
 
 export default router;

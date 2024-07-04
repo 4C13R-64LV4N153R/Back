@@ -110,3 +110,25 @@ export const getBarProposalHandler = async (req: Request, res: Response) => {
         }
     }
 };
+
+
+export const getPendingLivraisonByBarHandler = async (req: Request, res: Response) => {
+    try {
+        const livraisons = await prisma.livraison.findFirst({
+            where: {
+                bar_id: Number(req.params.id),
+                statut: 'prise_en_charge',
+            },
+            include: {
+                produits: true,
+            },
+        });
+        res.json(livraisons);
+    } catch (error) {
+        if (error instanceof Error) {
+            res.status(500).json({ error: error.message });
+        } else {
+            res.status(500).json({ error: "Unknown error" });
+        }
+    }
+}
