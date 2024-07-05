@@ -54,7 +54,7 @@ router.get('/:id', authenticateToken, getLivraisonByIdHandler);
  *   post:
  *     summary: Create a new livraison
  *     tags:
- *      - livraison
+ *       - livraison
  *     requestBody:
  *       required: true
  *       content:
@@ -62,23 +62,65 @@ router.get('/:id', authenticateToken, getLivraisonByIdHandler);
  *           schema:
  *             type: object
  *             properties:
- *               idCommande:
+ *               utilisateur_id:
  *                 type: integer
- *               idLivreur:
+ *                 example: 2
+ *               bar_id:
  *                 type: integer
- *               dateLivraison:
- *                 type: string
- *             required:
- *               - idCommande
- *               - idLivreur
- *               - dateLivraison
+ *                 example: 1
+ *               stocks:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     produit_id:
+ *                       type: integer
+ *                       example: 1
+ *                     quantite:
+ *                       type: integer
+ *                       example: 10
  *     responses:
  *       201:
- *         description: Livraison created
+ *         description: Livraison created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   example: 1
+ *                 utilisateur_id:
+ *                   type: integer
+ *                   example: 2
+ *                 bar_id:
+ *                   type: integer
+ *                   example: 1
+ *                 statut:
+ *                   type: string
+ *                   example: en_attente_de_reponse
+ *                 date_livraison:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2024-07-04T00:00:00.000Z"
+ *                 produits:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       livraison_produit_id:
+ *                         type: integer
+ *                         example: 1
+ *                       produit_id:
+ *                         type: integer
+ *                         example: 1
+ *                       quantite:
+ *                         type: integer
+ *                         example: 10
  *       400:
- *         description: Bad request
+ *         description: Invalid input data
  *       500:
- *         description: Unknown error
+ *         description: Internal server error
  */
 router.post('/', authenticateToken, createLivraisonHandler);
 

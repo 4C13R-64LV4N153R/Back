@@ -1,20 +1,37 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export async function createLivraison(livraisonData: { utilisateur_id: number; bar_id: number; statut: 'prise_en_charge' | 'livree' | 'refusee' | 'en_attente_de_reponse'; date_livraison: Date }) {
-    return await prisma.livraison.create({
+export async function createLivraison(
+    utilisateur_id: number,
+    bar_id: number,
+    stocks: { produit_id: number; quantite: number }[]
+) {
+    if (!utilisateur_id || !bar_id || !stocks || !Array.isArray(stocks)) {
+        throw new Error('Invalid input data');
+    }
+
+    // Create the livraison
+    const newLivraison = await prisma.livraison.create({
         data: {
-            utilisateur_id: livraisonData.utilisateur_id,
-            bar_id: livraisonData.bar_id,
-            statut: livraisonData.statut,
-            date_livraison: livraisonData.date_livraison
+            utilisateur_id,
+            bar_id,
+            statut: 'en_attente_de_reponse', // Default status
+            date_livraison: new Date(),
+            produits: {
+                create: stocks.map(stock => ({
+                    produit_id: stock.produit_id,
+                    quantite: stock.quantite,
+                })),
+            },
         },
         include: {
-            utilisateur: true,
-            bar: true,
             produits: true,
+            bar: true,
+            utilisateur: true,
         },
     });
+
+    return newLivraison;
 }
 
 export async function getLivraisonById(livraisonId: number) {

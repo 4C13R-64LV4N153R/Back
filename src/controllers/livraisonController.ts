@@ -12,7 +12,7 @@ export const getLivraisonByIdHandler = async (req: Request, res: Response) => {
         }
     } catch (error) {
         if (error instanceof Error) {
-            res.status(500).json({ error: error.message });
+            res.status(500).json({ error: (error as Error).message });
         } else {
             res.status(500).json({ error: 'Unknown error' });
         }
@@ -21,16 +21,14 @@ export const getLivraisonByIdHandler = async (req: Request, res: Response) => {
 
 export const createLivraisonHandler = async (req: Request, res: Response) => {
     try {
-        const livraison = await createLivraison(req.body);
-        res.status(201).json(livraison);
+        const { utilisateur_id, bar_id, stocks } = req.body;
+        const newLivraison = await createLivraison(utilisateur_id, bar_id, stocks);
+        res.status(201).json(newLivraison);
     } catch (error) {
-        if (error instanceof Error) {
-            res.status(500).json({ error: error.message });
-        } else {
-            res.status(500).json({ error: 'Unknown error' });
-        }
+        console.error('Error creating livraison:', error);
+        res.status(500).json({ error: (error as Error).message });
     }
-}
+};
 
 export const updateLivraisonHandler = async (req: Request, res: Response) => {
     try {
