@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 export async function createLivraison(
     utilisateur_id: number,
     bar_id: number,
-    stocks: { produit_id: number; quantite: number }[]
+    stocks: { produit: { id: number; nom: string; contenance: number; unite: string; partenaire_id: number; img_url: string }, quantite: number }[]
 ) {
     if (!utilisateur_id || !bar_id || !stocks || !Array.isArray(stocks)) {
         throw new Error('Invalid input data');
@@ -19,13 +19,17 @@ export async function createLivraison(
             date_livraison: new Date(),
             produits: {
                 create: stocks.map(stock => ({
-                    produit_id: stock.produit_id,
+                    produit_id: stock.produit.id,
                     quantite: stock.quantite,
                 })),
             },
         },
         include: {
-            produits: true,
+            produits: {
+                include: {
+                    produit: true,
+                },
+            },
             bar: true,
             utilisateur: true,
         },

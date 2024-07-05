@@ -64,7 +64,7 @@ router.get('/:id', authenticateToken, getLivraisonByIdHandler);
  *             properties:
  *               utilisateur_id:
  *                 type: integer
- *                 example: 2
+ *                 example: 3
  *               bar_id:
  *                 type: integer
  *                 example: 1
@@ -73,12 +73,30 @@ router.get('/:id', authenticateToken, getLivraisonByIdHandler);
  *                 items:
  *                   type: object
  *                   properties:
- *                     produit_id:
- *                       type: integer
- *                       example: 1
+ *                     produit:
+ *                       type: object
+ *                       properties:
+ *                         id:
+ *                           type: integer
+ *                           example: 1
+ *                         nom:
+ *                           type: string
+ *                           example: WHISKY JACK DANIELS HONEY
+ *                         contenance:
+ *                           type: integer
+ *                           example: 700
+ *                         unite:
+ *                           type: string
+ *                           example: ml
+ *                         partenaire_id:
+ *                           type: integer
+ *                           example: 1
+ *                         img_url:
+ *                           type: string
+ *                           example: https://cdn.metro-group.com/fr/fr_pim_145339001001_01.png?w=400&h=400&mode=pad
  *                     quantite:
  *                       type: integer
- *                       example: 10
+ *                       example: 85
  *     responses:
  *       201:
  *         description: Livraison created successfully
@@ -92,7 +110,7 @@ router.get('/:id', authenticateToken, getLivraisonByIdHandler);
  *                   example: 1
  *                 utilisateur_id:
  *                   type: integer
- *                   example: 2
+ *                   example: 3
  *                 bar_id:
  *                   type: integer
  *                   example: 1
@@ -116,7 +134,28 @@ router.get('/:id', authenticateToken, getLivraisonByIdHandler);
  *                         example: 1
  *                       quantite:
  *                         type: integer
- *                         example: 10
+ *                         example: 85
+ *                       produit:
+ *                         type: object
+ *                         properties:
+ *                           id:
+ *                             type: integer
+ *                             example: 1
+ *                           nom:
+ *                             type: string
+ *                             example: WHISKY JACK DANIELS HONEY
+ *                           contenance:
+ *                             type: integer
+ *                             example: 700
+ *                           unite:
+ *                             type: string
+ *                             example: ml
+ *                           partenaire_id:
+ *                             type: integer
+ *                             example: 1
+ *                           img_url:
+ *                             type: string
+ *                             example: https://cdn.metro-group.com/fr/fr_pim_145339001001_01.png?w=400&h=400&mode=pad
  *       400:
  *         description: Invalid input data
  *       500:
