@@ -95,9 +95,11 @@ export const getBarProposalHandler = async (req: Request, res: Response) => {
             const produit = await prisma.produit.findUnique({
                 where: { id: stock.produit_id },
             });
+            const quantite_max = stock.quantite_max;
             return {
                 produit,
                 quantite: magasinStock ? Math.min(magasinStock.quantite, neededQuantity) : 0,
+                quantite_max
             };
         }));
         res.status(200).json({ bar, proposal: barStocks });
