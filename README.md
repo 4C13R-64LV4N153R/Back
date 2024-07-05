@@ -107,3 +107,16 @@ To get a local copy up and running, follow these simple steps.
     ```
 
 That's it! You now have a basic authentication system set up in your Express API using Prisma and PostgreSQL.
+
+
+- **Launch Docker**
+
+    ```sh
+    docker-compose up --build -d
+    ```
+
+- **Stop Docker**
+
+    ```sh
+    docker-compose down -v
+    ```
