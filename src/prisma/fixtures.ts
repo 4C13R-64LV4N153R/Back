@@ -297,7 +297,7 @@ export async function getFixtures() {
                 { bar_id: BarLoges.id, produit_id: Perrier.id, quantite: 32 },
                 { bar_id: BarLoges.id, produit_id: FrenchTonic.id, quantite: 13 },
                 { bar_id: BarLoges.id, produit_id: FrenchGingerBeer.id, quantite: 10 },
-                { bar_id: BarGeneralConcerts.id, produit_id: Jack7.id, quantite: 100},
+                { bar_id: BarGeneralConcerts.id, produit_id: Jack7.id, quantite: 100 },
                 { bar_id: BarGeneralConcerts.id, produit_id: Ricard.id, quantite: 200 },
                 { bar_id: BarGeneralConcerts.id, produit_id: HuitSix.id, quantite: 340 },
                 { bar_id: BarGeneralConcerts.id, produit_id: JackHoney.id, quantite: 120 },
@@ -359,26 +359,6 @@ export async function getFixtures() {
                 { bar_id: Magasin.id, produit_id: Bavaria_0.id, quantite: 13 },
             ]
         });
-
-        // Insertion des livraisons
-        const livraison1 = await prisma.livraison.create({
-            data: { utilisateur_id: livreurJane.id, bar_id: BarVinVIP.id, statut: 'prise_en_charge', date_livraison: new Date('2024-07-04') }
-        });
-        const livraison2 = await prisma.livraison.create({
-            data: { utilisateur_id: livreurJane.id, bar_id: BarVinVIP.id, statut: 'en_attente_de_reponse', date_livraison: new Date('2024-07-04') }
-        });
-
-        // Insertion des produits dans les livraisons
-        await prisma.livraisonProduit.createMany({
-            data: [
-                { livraison_id: livraison1.id, produit_id: BavariaPremium.id, quantite: 50 },
-                { livraison_id: livraison1.id, produit_id: Coca_0_1500.id, quantite: 30 },
-                { livraison_id: livraison2.id, produit_id: JackFire.id, quantite: 32 },
-                { livraison_id: livraison2.id, produit_id: Coca_0_1500.id, quantite: 53 },
-                { livraison_id: livraison2.id, produit_id: Bavaria_0.id, quantite: 21 },
-            ],
-        });
-
 
     } catch (err) {
         console.log(err);
