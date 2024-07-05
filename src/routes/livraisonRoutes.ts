@@ -63,10 +63,10 @@ router.get('/:id', authenticateToken, getLivraisonByIdHandler);
  *             type: object
  *             properties:
  *               utilisateur_id:
- *                 type: integer
+ *                 type: string
  *                 example: 3
  *               bar_id:
- *                 type: integer
+ *                 type: string
  *                 example: 1
  *               stocks:
  *                 type: array
