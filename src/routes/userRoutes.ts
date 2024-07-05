@@ -3,6 +3,20 @@ import { getUserByIdHandler, createUserHandler, getUserByToken } from '../contro
 import { authenticateToken } from '../middlewares/authMiddleware';
 
 const router = Router();
+/**
+ * @swagger
+ * /users/me:
+ *   get:
+ *     summary: Get the authenticated user's ID
+ *     tags:
+ *      - users
+ *     responses:
+ *       200:
+ *         description: User  found
+ *       401:
+ *         description: Unauthorized
+ */
+router.get('/me', authenticateToken, getUserByToken);
 
 /**
  * @swagger
@@ -60,20 +74,5 @@ router.get('/:id', authenticateToken, getUserByIdHandler);
  *         description: Unknown error
  */
 router.post('/', authenticateToken, createUserHandler);
-
-/**
- * @swagger
- * /users/me:
- *   get:
- *     summary: Get the authenticated user's ID
- *     tags:
- *      - users
- *     responses:
- *       200:
- *         description: User  found
- *       401:
- *         description: Unauthorized
- */
-router.get('/me', authenticateToken, getUserByToken);
 
 export default router;
